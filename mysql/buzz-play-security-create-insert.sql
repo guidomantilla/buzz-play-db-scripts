@@ -44,8 +44,8 @@ LOCK TABLES `authorities` WRITE;
     DISABLE KEYS */;
 INSERT INTO `authorities`
 VALUES ('Admin', 'role_admin'),
-       ('Jon', 'role_user'),
-       ('Mike', 'role_user');
+       ('Jon', 'role_free_user'),
+       ('Mike', 'role_premium_user');
 /*!40000 ALTER TABLE `authorities`
     ENABLE KEYS */;
 UNLOCK TABLES;
@@ -84,8 +84,8 @@ LOCK TABLES `oauth_client_details` WRITE;
 /*!40000 ALTER TABLE `oauth_client_details`
     DISABLE KEYS */;
 INSERT INTO `oauth_client_details`
-VALUES ('VALID_MOVIE_RENTAL_WEB', 'USER_CLIENT_RESOURCE,USER_ADMIN_RESOURCE',
-        '{bcrypt}$2y$12$THl3orcO8tWrH/Sc6R4r7.WSsMzTAZ1c/cIaA.40eahX.KNBluCB2', 'role_admin,role_user',
+VALUES ('BUZZ_PLAY_WEB_LEGACY', 'USER_CLIENT_RESOURCE,USER_ADMIN_RESOURCE',
+        '{bcrypt}$2y$12$giiy6NkEk.3z0hGocibHm.TrizNiwWn2WXlliVzHcn1jWYzfVtXxa', 'role_admin,role_user',
         'authorization_code,password,refresh_token,implicit', '', NULL, 900, 180, '{}', 'true');
 /*!40000 ALTER TABLE `oauth_client_details`
     ENABLE KEYS */;
