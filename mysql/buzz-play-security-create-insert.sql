@@ -18,46 +18,46 @@ SET NAMES utf8;
 /*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
 
 --
--- Table structure for table `authorities`
+-- Table structure for table `auth_authority`
 --
 
-DROP TABLE IF EXISTS `authorities`;
+DROP TABLE IF EXISTS `auth_authority`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 SET character_set_client = utf8mb4;
-CREATE TABLE `authorities`
+CREATE TABLE `auth_authority`
 (
     `username`  varchar(50) NOT NULL,
     `authority` varchar(50) NOT NULL,
     UNIQUE KEY `ix_auth_username` (`username`, `authority`),
-    CONSTRAINT `fk_authorities_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+    CONSTRAINT `fk_auth_authority_auth_user` FOREIGN KEY (`username`) REFERENCES `auth_user` (`username`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `authorities`
+-- Dumping data for table `auth_authority`
 --
 
-LOCK TABLES `authorities` WRITE;
-/*!40000 ALTER TABLE `authorities`
+LOCK TABLES `auth_authority` WRITE;
+/*!40000 ALTER TABLE `auth_authority`
     DISABLE KEYS */;
-INSERT INTO `authorities`
+INSERT INTO `auth_authority`
 VALUES ('Admin', 'role_admin'),
        ('Jon', 'role_free_user'),
        ('Mike', 'role_premium_user');
-/*!40000 ALTER TABLE `authorities`
+/*!40000 ALTER TABLE `auth_authority`
     ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `oauth_client_details`
+-- Table structure for table `oauth_app_client`
 --
 
-DROP TABLE IF EXISTS `oauth_client_details`;
+DROP TABLE IF EXISTS `oauth_app_client`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 SET character_set_client = utf8mb4;
-CREATE TABLE `oauth_client_details`
+CREATE TABLE `oauth_app_client`
 (
     `client_id`               varchar(256) NOT NULL,
     `resource_ids`            varchar(256)  DEFAULT NULL,
@@ -77,28 +77,28 @@ CREATE TABLE `oauth_client_details`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `oauth_client_details`
+-- Dumping data for table `oauth_app_client`
 --
 
-LOCK TABLES `oauth_client_details` WRITE;
-/*!40000 ALTER TABLE `oauth_client_details`
+LOCK TABLES `oauth_app_client` WRITE;
+/*!40000 ALTER TABLE `oauth_app_client`
     DISABLE KEYS */;
-INSERT INTO `oauth_client_details`
+INSERT INTO `oauth_app_client`
 VALUES ('BUZZ_PLAY_WEB_LEGACY', 'USER_CLIENT_RESOURCE,USER_ADMIN_RESOURCE',
         '{bcrypt}$2y$12$giiy6NkEk.3z0hGocibHm.TrizNiwWn2WXlliVzHcn1jWYzfVtXxa', 'role_admin,role_user',
         'authorization_code,password,refresh_token,implicit', '', NULL, 900, 180, '{}', 'true');
-/*!40000 ALTER TABLE `oauth_client_details`
+/*!40000 ALTER TABLE `oauth_app_client`
     ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `users`
+-- Table structure for table `auth_user`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `auth_user`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 SET character_set_client = utf8mb4;
-CREATE TABLE `users`
+CREATE TABLE `auth_user`
 (
     `username` varchar(50)  NOT NULL,
     `password` varchar(500) NOT NULL,
@@ -110,17 +110,17 @@ CREATE TABLE `users`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `auth_user`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users`
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user`
     DISABLE KEYS */;
-INSERT INTO `users`
+INSERT INTO `auth_user`
 VALUES ('Admin', '{bcrypt}$2a$10$EOs8VROb14e7ZnydvXECA.4LoIhPOoFHKvVF/iBZ/ker17Eocz4Vi', 1),
        ('Jon', '{bcrypt}$2a$10$EOs8VROb14e7ZnydvXECA.4LoIhPOoFHKvVF/iBZ/ker17Eocz4Vi', 1),
        ('Mike', '{bcrypt}$2a$10$EOs8VROb14e7ZnydvXECA.4LoIhPOoFHKvVF/iBZ/ker17Eocz4Vi', 1);
-/*!40000 ALTER TABLE `users`
+/*!40000 ALTER TABLE `auth_user`
     ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
